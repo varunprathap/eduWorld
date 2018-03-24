@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import './Notification.dart' as notification;
 import './More.dart' as more;
 import './Tools.dart' as tools;
-import './Classes.dart' as classes;
+
 
 
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Flutter Demo',
+      title: 'eduWorld',
       theme: new ThemeData(
         // This is the theme of your application.
         //
@@ -53,14 +53,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
 
 
-  TabController controller;
+  PageController controller;
+  int page =1;
+
 
 
   @override
   void initState(){
 
      super.initState();
-     controller=new TabController(vsync: this,length: 4);
+     controller=new PageController(initialPage: this.page);
   }
 
   @override
@@ -72,38 +74,37 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    
     return new Scaffold(
       appBar: new AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: new Text(widget.title),backgroundColor:Colors.amber
-      ),bottomNavigationBar: new Material(
-color: Colors.amber,
-        child: new TabBar(
-                controller: controller,
-                tabs: <Tab>[
-
-                 new Tab(icon: new Icon(Icons.notifications),),
-                 new Tab(icon: new Icon(Icons.settings),),
-                 new Tab(icon: new Icon(Icons.rss_feed),)
-
-
-                ],
-
+      ),bottomNavigationBar: new BottomNavigationBar(
+            items: [
+              new BottomNavigationBarItem(
+                icon: new Icon(new IconData(62008, fontFamily: "mdi")),
+                title: new Text("trends"),
+              ),
+              new BottomNavigationBarItem(
+                  icon: new Icon(Icons.location_on), title: new Text("feed")),
+              new BottomNavigationBarItem(
+                  icon: new Icon(Icons.people), title: new Text("community"))
+            ],
+            onTap: onTap,
+            currentIndex: page
         ),
-      ),
-
-      body: new TabBarView(
-
-          controller: controller,
-          children: <Widget>[new notification.Notification(),new tools.Tools(),new more.More()],
-      ),
+      body: new PageView(controller:controller,onPageChanged: onPageChanged, children: <Widget>[new notification.Notification(),new tools.Tools()],)
     ); 
+  }
+
+   void onTap(int index) {
+    controller.animateToPage(
+        index, duration: const Duration(milliseconds: 300),
+        curve: Curves.ease);
+  }
+
+  void onPageChanged(int page) {
+    setState(() {
+      this.page = page;
+    });
   }
 }
