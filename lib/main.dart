@@ -81,13 +81,21 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       ),bottomNavigationBar: new BottomNavigationBar(
             items: [
               new BottomNavigationBarItem(
-                icon: new Icon(new IconData(62008, fontFamily: "mdi")),
-                title: new Text("trends"),
+                icon: new Icon(Icons.cloud),
+                title: new Text("Feed"),
               ),
               new BottomNavigationBarItem(
-                  icon: new Icon(Icons.location_on), title: new Text("feed")),
+                  icon: new Icon(Icons.notifications), 
+                  title: new Text("Notification")),
               new BottomNavigationBarItem(
-                  icon: new Icon(Icons.people), title: new Text("community"))
+                  icon: new Icon(Icons.people), 
+                  title: new Text("Classes")),
+              new BottomNavigationBarItem(
+                  icon: new Icon(Icons.settings), 
+                  title: new Text("Tools")),
+              new BottomNavigationBarItem(
+                  icon: new Icon(Icons.router), 
+                  title: new Text("More"))
             ],
             onTap: onTap,
             currentIndex: page
