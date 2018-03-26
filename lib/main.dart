@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import './Notification.dart' as notification;
 import './More.dart' as more;
 import './Tools.dart' as tools;
-
+import './Classes.dart' as classes;
+import './Feed.dart' as feed;
 
 
 
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
 
   PageController controller;
-  int page =1;
+  int page =0;
 
 
 
@@ -76,31 +77,38 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     
     return new Scaffold(
+      backgroundColor: Colors.white,
       appBar: new AppBar(
         title: new Text(widget.title),backgroundColor:Colors.amber
-      ),bottomNavigationBar: new BottomNavigationBar(
+      ),bottomNavigationBar: new BottomNavigationBar( 
             items: [
               new BottomNavigationBarItem(
                 icon: new Icon(Icons.cloud),
+                backgroundColor: Colors.amber,
                 title: new Text("Feed"),
               ),
               new BottomNavigationBarItem(
                   icon: new Icon(Icons.notifications), 
+                  backgroundColor: Colors.amber,
                   title: new Text("Notification")),
               new BottomNavigationBarItem(
                   icon: new Icon(Icons.people), 
+                  backgroundColor: Colors.amber,
                   title: new Text("Classes")),
               new BottomNavigationBarItem(
                   icon: new Icon(Icons.settings), 
+                  backgroundColor: Colors.amber,
                   title: new Text("Tools")),
               new BottomNavigationBarItem(
-                  icon: new Icon(Icons.router), 
+                  icon: new Icon(Icons.store), 
+                  backgroundColor: Colors.amber,
                   title: new Text("More"))
             ],
             onTap: onTap,
-            currentIndex: page
+            currentIndex: page,
+            
         ),
-      body: new PageView(controller:controller,onPageChanged: onPageChanged, children: <Widget>[new notification.Notification(),new tools.Tools()],)
+      body: new PageView(controller:controller,onPageChanged: onPageChanged, children: <Widget>[new feed.Feed(), new notification.Notification(),new classes.Classes(),new tools.Tools(),new more.More()])
     ); 
   }
 
