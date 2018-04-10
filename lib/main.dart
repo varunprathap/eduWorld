@@ -4,6 +4,7 @@ import './More.dart' as more;
 import './Tools.dart' as tools;
 import './Classes.dart' as classes;
 import './Feed.dart' as feed;
+import './GradientBar.dart';
 
 void main() => runApp(new MyApp());
 
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
           // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
           // counter didn't reset back to zero; the application is not restarted.
           primarySwatch: Colors.red),
-      home: new MyHomePage(title: 'eduWorld app'),
+       home: new notification.More(),
+      // new MyHomePage(title: 'eduWorld app'),
       showPerformanceOverlay: false,
     );
   }
@@ -68,63 +70,49 @@ class _MyHomePageState extends State<MyHomePage>
   Widget build(BuildContext context) {
     return new Scaffold(
         backgroundColor: Colors.white,
-        appBar: new AppBar(
-          title: new Text(widget.title),
-          backgroundColor: Colors.amber,
-          actions: <Widget>[
-            new IconButton(
-              // action button
-              icon: new Icon(Icons.notification_important),
-              onPressed: () {},
-            ),
-          ],
-        ),
         bottomNavigationBar: new BottomNavigationBar(
           items: [
             new BottomNavigationBarItem(
               icon: new Icon(Icons.cloud),
-              backgroundColor: Colors.amber,
+              backgroundColor:const Color(0xFF3366FF),
               title: new Text("Feed"),
             ),
+            // new BottomNavigationBarItem(
+            //   title: new Text('Notifications'),
+            //   icon: new Stack(children: <Widget>[
+            //     new Icon(Icons.notifications),
+            //     new Positioned(
+            //       // draw a red marble
+            //       top: 0.0,
+            //       right: 0.0,
+            //       child: new Icon(Icons.brightness_1,
+            //           size: 8.0, color: Colors.redAccent),
+            //     )
+            //   ]),
+            // ),
+            // new BottomNavigationBarItem(
+            //     icon: new Icon(Icons.people),
+            //     backgroundColor: const Color(0xFF3366FF),
+            //     title: new Text("Classes")),
+            // new BottomNavigationBarItem(
+            //     icon: new Icon(Icons.settings),
+            //     backgroundColor: const Color(0xFF3366FF),
+            //     title: new Text("Tools")),
             new BottomNavigationBarItem(
-              title: new Text('Notifications'),
-              icon: new Stack(children: <Widget>[
-                new Icon(Icons.notifications),
-                new Positioned(
-                  // draw a red marble
-                  top: 0.0,
-                  right: 0.0,
-                  child: new Icon(Icons.brightness_1,
-                      size: 8.0, color: Colors.redAccent),
-                )
-              ]),
-            ),
-            new BottomNavigationBarItem(
-                icon: new Icon(Icons.people),
-                backgroundColor: Colors.amber,
-                title: new Text("Classes")),
-            new BottomNavigationBarItem(
-                icon: new Icon(Icons.settings),
-                backgroundColor: Colors.amber,
-                title: new Text("Tools")),
-            new BottomNavigationBarItem(
-                icon: new Icon(Icons.store),
-                backgroundColor: Colors.amber,
-                title: new Text("More"))
+                icon: new Icon(Icons.message),
+                backgroundColor:const Color(0xFF3366FF),
+                title: new Text("Messages"))
           ],
           onTap: onTap,
           currentIndex: page,
         ),
-        body: new PageView(
+        body: new Column(children: <Widget>[new GradientBar("MeMa"),new Flexible(child:new PageView(
             controller: controller,
             onPageChanged: onPageChanged,
             children: <Widget>[
               new feed.Feed(),
-              new notification.Notification(),
-              new classes.Classes(),
-              new tools.Tools(),
-              new more.More()
-            ]));
+              new notification.More()
+            ])) ],));
   }
 
   void onTap(int index) {

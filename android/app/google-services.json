@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "746592504424",
+    "firebase_url": "https://shopme-8389e.firebaseio.com",
+    "project_id": "shopme-8389e",
+    "storage_bucket": "shopme-8389e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746592504424:android:037191d101266455",
+        "android_client_info": {
+          "package_name": "com.hook.Hook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746592504424-du882l49itjb6cgg1a9mnkop2bt6nr0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-z6e0lZ_xRXNv9Ue2Xh-bAw8es7Bp3pA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
